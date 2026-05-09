@@ -2,19 +2,42 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# HR Helper App
 
-This contains everything you need to run your app locally.
+This contains everything you need to run your app locally and deploy it.
 
-View your app in AI Studio: https://ai.studio/apps/6c67c7b7-cec1-4f62-9c46-f50e4db33257
+## 🚀 Run Locally
 
-## Run Locally
-
-**Prerequisites:**  Node.js
-
+**Prerequisites:** Node.js (v18+)
 
 1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+   ```bash
+   npm install
+   ```
+2. Environment Variables:
+   Copy `.env.example` to `.env.local` and set the `GEMINI_API_KEY`:
+   ```bash
+   cp .env.example .env.local
+   ```
 3. Run the app:
-   `npm run dev`
+   ```bash
+   npm run dev
+   ```
+
+## 📦 Build for Production
+
+To build the static files for production, run:
+```bash
+npm run build
+```
+The output will be in the `dist` directory.
+
+## 🌐 Deploy to GitHub Pages
+
+This project is configured with a GitHub Action to automatically deploy to GitHub Pages whenever you push to the `main` or `master` branch.
+
+**Setup Instructions:**
+1. Go to your GitHub repository settings.
+2. Navigate to **Pages** on the left sidebar.
+3. Under **Build and deployment**, set the Source to **GitHub Actions**.
+4. Push your code to the `main` or `master` branch, and the workflow (`deploy.yml`) will automatically build and deploy your app.

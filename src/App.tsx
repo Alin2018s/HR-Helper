@@ -88,6 +88,7 @@ export default function App() {
           .map(n => String(n).trim())
           .filter(n => n.length > 0);
         setNames(prev => [...prev, ...parsedNames]);
+        e.target.value = ''; // 加上這行，確保能重複上傳同一個檔案
       },
       header: false,
     });
@@ -159,11 +160,13 @@ export default function App() {
     );
 
     const csv = Papa.unparse(exportData);
-    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
+    const dateStr = new Date().toISOString().split('T')[0];
+    const encodedUri = 'data:text/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(csv);
+    
     const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', `分組結果_${new Date().toLocaleDateString()}.csv`);
+    link.href = encodedUri;
+    link.download = `Group_Result_${dateStr}.csv`;
+    
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
